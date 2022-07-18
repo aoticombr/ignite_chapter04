@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import e, { Request, Response } from "express";
 
 import { TurnUserAdminUseCase } from "./TurnUserAdminUseCase";
 
@@ -11,7 +11,10 @@ class TurnUserAdminController {
       const user = this.turnUserAdminUseCase.execute({user_id});
       return response.status(201).json(user);
     } catch (error) {
-      return response.status(400).json({error:error});
+      //if (error === 'Not Found')
+        return response.status(404).json({error:error});
+      
+     // return response.status(400).json({error:error});
     }
 
     

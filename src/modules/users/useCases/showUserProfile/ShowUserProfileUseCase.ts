@@ -10,18 +10,16 @@ class ShowUserProfileUseCase {
   constructor(private usersRepository: IUsersRepository) {}
 
   execute({ user_id }: IRequest): User { 
-    const users = this.usersRepository.list();
-    if (validate(user_id) === false){
-      throw new Error("uuid invalid");  
+    const admin = this.usersRepository.findById(user_id);
+    if (!admin) {
+      throw new Error("Not Found"); 
     }
-    if (!users){
-      throw new Error("List users empty!");      
-    }
-    const user = users.filter(f => f.id === user_id);
-    if (!user) {
-      throw new Error("User Not Found");      
-    }
-    return user[0];
+    //const users = this.usersRepository.list();
+    //const user = users.filter(f => f.id === user_id);
+    //if (!user) {
+    //  throw new Error("User Not Found");      
+    //}
+    return admin;
     
   }
 }
