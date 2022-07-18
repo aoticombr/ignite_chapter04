@@ -5,8 +5,8 @@ class User {
   name: string;  
   email: string;
   admin?: boolean;
-  create_at: Date;
-  updated_at?: Date;  
+  created_at?: Date | undefined;
+  updated_at?: Date | undefined;  
 
   constructor() {
     if (!this.id) {
@@ -15,8 +15,8 @@ class User {
     if (!this.admin) {
       this.admin = false;
     }
-    if (!this.create_at) {
-      this.create_at = new Date();
+    if (!this.created_at) {
+      this.created_at = new Date();
     }
     if (!this.updated_at) {
       this.updated_at = new Date();

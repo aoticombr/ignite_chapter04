@@ -1,5 +1,6 @@
 import { User } from "../../model/User";
 import { IUsersRepository } from "../../repositories/IUsersRepository";
+import { validate } from "uuid";
 
 interface IRequest {
   user_id: string;
@@ -10,6 +11,9 @@ class ShowUserProfileUseCase {
 
   execute({ user_id }: IRequest): User { 
     const users = this.usersRepository.list();
+    if (validate(user_id) === false){
+      throw new Error("uuid invalid");  
+    }
     if (!users){
       throw new Error("List users empty!");      
     }

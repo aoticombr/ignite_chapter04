@@ -3,6 +3,7 @@ import { User } from "../model/User";
 interface ICreateUserDTO {
   name: string;
   email: string;
+  
 }
 
 interface IUsersRepository {
