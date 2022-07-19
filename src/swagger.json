@@ -1,0 +1,189 @@
+{
+    "openapi":"3.0.0",
+    "info": {
+        "title":"User List Documentation",
+        "description":"This is an API User",
+        "version": "1.0.0",
+        "contact": {
+            "email": "paulo@aoti.com.br"
+        }
+    },
+    "paths": {
+        "/users": {
+           "post": {
+                "tags": ["users"],
+                "summary": "Cria o usuário",
+                "description": "Cria novo usuário",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "propperties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    }
+                                },
+                                "example":{
+                                    "name": "nome do usuario",
+                                    "email": "email do usuario"
+                                }    
+                            }
+                        } 
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "400": {
+                        "description": "User Alread exists"
+                    }
+                }
+           },
+           "get": {
+                "tags": ["users"],
+                "summary": "Retornar Lista de Usuários",
+                "description": "Retornar Lista de Usuários desde que o solicitante seja admin",                
+                "parameters":[
+                    {
+                    "name":"user_id",
+                    "in":"header",
+                    "description":"uuid user admin",
+                    "required": true}
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content":{
+                            "application/json":{
+                               "schema":{
+                                  "type": "object",
+                                  "properties":{
+                                     "name": {
+                                        "type": "string"
+                                     },
+                                     "description": {
+                                        "type": "string"
+                                     }
+                                  }
+                               }  
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Category Alread exists"
+                    }
+                }
+           }
+           
+           
+        },
+        "/users/{user_id}": {
+            "get": {
+                "tags": ["users"],
+                "summary": "devolver as informações do usuário",
+                "description": "A rota deve receber, nos parâmetros da rota, o id de um usuário e devolver as informações do usuário encontrado pelo corpo da resposta.",  
+                "parameters":[
+                    {
+                      "in":"path",
+                      "name":"user_id",                  
+                      "description":"uuid user admin",
+                      "required": true
+                    }
+                ],               
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content":{
+                            "application/json":{
+                               "schema":{
+                                  "type": "object",
+                                  "properties":{
+                                    "id": {
+                                        "type": "string"
+                                     },
+                                     "admin": {
+                                        "type": "boolean"
+                                     },
+                                     "created_at": {
+                                        "type": "string"
+                                     },
+                                     "updated_at": {
+                                        "type": "string"
+                                     },
+                                     "name": {
+                                        "type": "string"
+                                     },
+                                     "email": {
+                                        "type": "string"
+                                     }
+                                  }
+                               }  
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Category Alread exists"
+                    }
+                }
+            }
+        },
+        "/users/{user_id}/admin": {
+            "patch": {
+                "tags": ["users"],
+                "summary": "Torna usuário ADMIN",
+                "description": "Torna usuário ADMIN",   
+                "parameters":[
+                    {
+                      "in":"path",
+                      "name":"user_id",                  
+                      "description":"uuid user admin",
+                      "required": true
+                    }
+                ],             
+                "responses": {
+                    "201": {
+                        "description": "Success",
+                        "content":{
+                            "application/json":{
+                               "schema":{
+                                  "type": "object",
+                                  "properties":{
+                                     "id": {
+                                        "type": "string"
+                                     },
+                                     "admin": {
+                                        "type": "boolean"
+                                     },
+                                     "created_at": {
+                                        "type": "string"
+                                     },
+                                     "updated_at": {
+                                        "type": "string"
+                                     },
+                                     "name": {
+                                        "type": "string"
+                                     },
+                                     "email": {
+                                        "type": "string"
+                                     }
+                                  }
+                               }  
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "User Not Found"
+                    },
+                    "400": {
+                        "description": "Error"
+                    }
+                }
+            }
+        }     
+    }
+}

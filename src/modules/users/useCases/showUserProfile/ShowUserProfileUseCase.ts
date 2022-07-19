@@ -14,11 +14,6 @@ class ShowUserProfileUseCase {
     if (!admin) {
       throw new Error("Not Found"); 
     }
-    //const users = this.usersRepository.list();
-    //const user = users.filter(f => f.id === user_id);
-    //if (!user) {
-    //  throw new Error("User Not Found");      
-    //}
     return admin;
     
   }

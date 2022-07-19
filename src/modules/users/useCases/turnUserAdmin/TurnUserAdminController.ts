@@ -12,9 +12,9 @@ class TurnUserAdminController {
       return response.status(201).json(user);
     } catch (error) {
       //if (error === 'Not Found')
-        return response.status(404).json({error:error});
+        return response.status(404).json({error:error.message}); 
       
-     // return response.status(400).json({error:error});
+    
     }
 
     
